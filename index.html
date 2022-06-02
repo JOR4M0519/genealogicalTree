@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Árbol Genealogico</title>
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <div>
+        <h1 id="title">Árbol Genealogico</h1>
+    </div>
+    <div class="container1">
+
+        <div class="tree">
+                <canvas id='my-canvas'></canvas>
+        </div>
+
+        <div class="configurations">
+            <h1 class="item1" id="text">Configuraciones del árbol</h1>
+            <h4>Añadir hijo: </h4>
+            <input id='tree-input' placeholder="ingresar valor">
+            <button class="item1" id='add-to-tree' onclick="addToTree()">insertar hijo</button>
+
+            <h2 class="item1">Calcular</h2>
+            <input id='value1' type='number' placeholder="ingresar hijo">
+            <input id='value2' type='number' placeholder="ingresar hijo">
+
+            <button data-toggle="modal" data-target="#exampleModalCenter" onclick="FindDistance()">Distancia entre hijos</button>
+            <button data-toggle="modal" data-target="#exampleModalCenter" onclick="FindAncester()">Ancestro de dos hijos</button>
+        </div>
+        
+    </div>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Resultado</h5>
+        </div>
+        <div class="modal-body" id="result">
+          
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</body>
+
+<!-- JavaScript Bootstrap -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+  integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+  integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"
+  integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+
+<script src="index.js"></script>
+<script src="node.js"></script>
+<script src="nodeList.js"></script>
+<script src="queue.js"></script>
+<script src="tree.js"></script>
+<script >
+    const tree = new Tree();
+
+    var insert = document.getElementById("tree-input");
+
+    insert.addEventListener("keypress", function(event) {
+    if (event.key === "Enter") {
+    event.preventDefault();
+    document.getElementById("add-to-tree").click()
+  }
+});
+
+</script>
+</html>

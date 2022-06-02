@@ -1,0 +1,79 @@
+body{
+    margin: 0;
+    background-color: rgb(34, 37, 38);
+    color: white;
+}
+
+*{
+    font-family: Helvetica;
+}
+
+button{
+    color: rgb(191, 185, 177);
+    background-color: rgb(26, 75, 75);
+    font-weight: 600;
+    border-radius: 6%;
+    padding: 20px;
+    border: 2px solid rgb(28, 82, 90);
+}
+
+button:hover{
+    transition-duration: 800ms;
+    background-color: rgb(112, 137, 137);
+}
+
+input{
+    color: white;
+    background-color: rgb(23, 23, 23);
+}
+
+.container1{
+    display: flex;
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+}
+
+.tree{
+    width: 70%;
+    height: 100%;
+}
+
+.configurations{
+    width: 30%;
+    height: 100%;
+    padding: 0 2%;
+    background-color: rgb(44, 48, 50);
+    display: grid;
+    row-gap: 6%;
+    grid-template-columns: 60% 40%;
+    align-items: center;
+    justify-items: center;
+    align-content: center;
+    align-content: baseline;
+}
+
+.item1{
+    grid-column-start: 1;
+    grid-column-end: 3;
+}
+
+#text{
+    padding: 5%;
+    text-align: center;
+}
+
+#my-canvas{
+    
+    width: max-content;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+}
+
+#title{
+    text-align: center;
+    padding: 0.5% 0;
+    margin: 0;
+    background-color: rgb(26, 28, 29);
+}
