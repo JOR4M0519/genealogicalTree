@@ -154,7 +154,7 @@ function FindDistance (){
 }
 
 function FindAncester(){
-    const {value1,value2} = getDataNodes();
+    const [value1,value2] = getDataNodes();
     
     let nodeAncester = tree.SimilarFatherNode(value1,value2,tree.Raiz);
     if(nodeAncester == null){
