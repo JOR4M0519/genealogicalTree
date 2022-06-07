@@ -3,20 +3,12 @@ class NodeBinario{
     Hizq = null;
     Hder = null;
 
-    //Constructores
     constructor(dato) {
         this.dato = dato;
         let nodeIzq;
         let nodeDer;
     }
 
-    // NodoBinario (int Elem){
-    //     dato = Elem;
-    //     NodoBinario Hizq;
-    //     NodoBinario Hder = null;
-    // }
-
-    //Insercion de un elemento
     InsertaBinario (element){
         if(element < this.dato){
             if (this.Hizq == null)

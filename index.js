@@ -1,10 +1,8 @@
 var Node = function(x,y,r, ctx, data) {
-    // left child of a node
     this.leftNode = null; 
-    // right child of a node
     this.rightNode = null;
     
-    // draw function. Responsible for drawing the node
+    // Dibuja el nodo-hijo
     this.draw = function() {
       ctx.beginPath();
       ctx.lineWidth = 3;
@@ -17,25 +15,22 @@ var Node = function(x,y,r, ctx, data) {
       ctx.fillText(data, x+Math.PI-12, y-Math.PI+12);
     };
     
-    // Simple getters
     this.getData = function() { return data; }; 
     this.getX = function() { return x; };
     this.getY = function() { return y; };
     this.getRadius = function() { return r; };
     
-    // Returns coordinate for the left child
-    // Go back 3 times radius in x axis and 
-    // go down 3 times radius in y axis
+    // Coordenadas hijo izq
     this.leftCoordinate = function() {
       return {cx: (x - (3*r)), cy: (y + (3*r))}
     };
-    // Same concept as above but for right child        
+    // Coordenadas hijo izq        
     this.rightCoordinate = function() {
       return {cx: (x + (3*r)), cy: (y+(3*r))}
     };
   };
   
-  // Draws a line from one circle(node) to another circle (node) 
+  // Dibujar arista
   var Line = function() {
     // Takes 
     // x,y      - starting x,y coordinate
@@ -53,7 +48,7 @@ var Node = function(x,y,r, ctx, data) {
     };
   };
   
-  // Represents the btree logic
+  // árbol canva
   var BTree = function() {
     var c = document.getElementById('my-canvas');
     var ctx = c.getContext('2d');
@@ -63,29 +58,29 @@ var Node = function(x,y,r, ctx, data) {
 
     var line = new Line();
     this.root = null;
-    
-    var self = this;
-    
-    // Getter for root
+       
+    // Raiz
     this.getRoot = function() { return this.root; };
     
-    // Adds element to the tree
+    // Añadir Hijo
     this.add = function( data) {
-      // If root exists, then recursively find the place to add the new node
+
+      
       if(this.root) {
         this.recursiveAddNode(this.root, null, null, data);  
       } else {
-      // If not, the add the element as a root 
+
+      // Añadir como raiz si no hay 
         let widthCanva = document.getElementById("my-canvas").offsetWidth/2;
         this.root = this.addAndDisplayNode(widthCanva, 50, 30, ctx, data);
         return;
       } 
     };
   
-    // Recurively traverse the tree and find the place to add the node
+    // Encontrar donde poner el nodo
     this.recursiveAddNode = function(node, prevNode, coordinateCallback, data) {
       if(!node) {
-        // This is either node.leftCoordinate or node.rightCoordinate
+        
         var xy = coordinateCallback();
         var newNode = this.addAndDisplayNode(xy.cx, xy.cy, 30, ctx, data);
         line.draw(prevNode.getX(), prevNode.getY(), xy.cx, xy.cy, prevNode.getRadius(), ctx)
@@ -102,7 +97,7 @@ var Node = function(x,y,r, ctx, data) {
       }
     };
     
-    // Adds the node to the tree and calls the draw function
+    
     this.addAndDisplayNode = function(x, y, r, ctx, data) {
       var node = new Node(x, y, r, ctx, data);
       node.draw();
@@ -114,8 +109,9 @@ var Node = function(x,y,r, ctx, data) {
     input = document.getElementById('tree-input');
     value = parseInt(input.value);
     if(value){
-        tree.InsertaNodo(value);
-        btree.add(value);
+        if(tree.InsertaNodo(value) === 1){
+          btree.add(value);
+        }
     }else{
       alert("Wrong input");
     }
