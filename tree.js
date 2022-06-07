@@ -11,63 +11,44 @@ class Tree {
     InsertaNodo(elem){
         if(this.Raiz == null){
             this.Raiz = new NodeBinario(elem);
+            return 1;
         }else{
-            this.Raiz.InsertaBinario (elem);}
-    }
-
-    //Preorden Recursivo del arbol
-    Preorden (Nodo){
-        if(Nodo == null)
-            return;
-        else{
-            console.log (Nodo.dato + " ");
-            this.Preorden (Nodo.Hizq);
-            this.Preorden (Nodo.Hder);
+            if(this.exist(elem,this.Raiz) === 0){this.Raiz.InsertaBinario (elem); return 1;}
+            else {alert("El hijo ya ha sido creado"); return 0;}
         }
     }
-
-    //PostOrden recursivo del arbol
-    PostOrden (Nodo){
-        if(Nodo == null)
-            return;
-        else{
-            this.PostOrden (Nodo.Hizq);
-            this.PostOrden (Nodo.Hder);
-            
-            var result = document.getElementById("result");
-            result.textContent += Nodo.dato+" - "; 
-            
-        }
-    }
-
-    //Inorden Recursivo del arbol
-    Inorden (Nodo){
-        if(Nodo === null){
-            return;
-        }else{
-            this.Inorden (Nodo.Hizq);
-            console.log(Nodo.dato + " ");
-            this.Inorden(Nodo.Hder);
-        }
-    }
-
 
     //Busca un elemento en el arbol
-    Busqueda = function (Elem, A){
-        this.i++;
-
-        if((A == null) | (A.dato == Elem)){
-            let aristas = this.i-1;
-            this.i=0;
-            return Number(aristas);
+    exist = function (value, A){
+        if(A == null){
+            return 0;
         }
         else{
-            if(Elem>A.dato)
-                return this.Busqueda (Elem, A.Hder);
+            if(A.dato === value){
+                return 1
+            }else if(value>A.dato)
+                return this.exist (value, A.Hder);
             else
-                return this.Busqueda ( Elem, A.Hizq);
+                return this.exist ( value, A.Hizq);
         }
     }
+
+    countAristas = function (Elem, A) {
+        this.i++;
+
+        if ((A == null) | (A.dato == Elem)) {
+            let aristas = this.i - 1;
+            this.i = 0;
+            return Number(aristas);
+        }
+        else {
+            if (Elem > A.dato)
+                return this.Busqueda(Elem, A.Hder);
+
+            else
+                return this.Busqueda(Elem, A.Hizq);
+        }
+    };
 
     SimilarFatherNode(child1, child2, A){
 
@@ -83,7 +64,7 @@ class Tree {
     }
 
     DistanceNodes(nodeData1,nodeData2,nodeAncester){
-        return Math.abs(this.Busqueda(nodeData1,nodeAncester) + this.Busqueda(nodeData2,nodeAncester));
+        return Math.abs(this.countAristas(nodeData1,nodeAncester) + this.countAristas(nodeData2,nodeAncester));
     }
 
 }
